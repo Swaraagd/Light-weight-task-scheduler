@@ -1,3 +1,5 @@
+/*
+
 Light weight task scheduler
 
 Have you seen https://wokwi.com? If not, go take a look!
@@ -12,6 +14,11 @@ Take a bare-metal approach! Does this approach scale, if there is a need to togg
 
 b) Now, write a simple scheduler and create two tasks one for each LED to achieve the same functionality as above and
 share the code/link to the project. The idea here is to develop a pre- emptive scheduler of your own and not use any standard kernels or RTOS.Code:
+
+Simulation Link:
+https://wokwi.com/projects/364531593912370177
+
+*/
 
 Code:
 
@@ -57,5 +64,4 @@ int main() { // the main function
     return 0; // end the program
 }
 
-Simulation Link:
-https://wokwi.com/projects/364531593912370177
+
