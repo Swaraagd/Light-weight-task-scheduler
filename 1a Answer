@@ -1,3 +1,5 @@
+/*
+
 Light weight task scheduler
 
 Have you seen https://wokwi.com? If not, go take a look!
@@ -9,6 +11,11 @@ Problem:
 a) Write a program to toggle Two LEDS or GPIOs namely, LED1 and LED2. at 1 sec and 2 sec interval respectively
 (if you are using the simulator online, then send a link to your project. Take a bare-metal approach! Does this approach scale,
 if there is a need to toggle many LEDs with different intervals?
+
+Simulation Link:
+https://wokwi.com/projects/364533280702171137
+
+ */
 
 Code: 
 
@@ -39,5 +46,4 @@ int main() {
 }
 
 
-Simulation Link:
-https://wokwi.com/projects/364533280702171137
+
