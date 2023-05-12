@@ -1,0 +1,43 @@
+Light weight task scheduler
+
+Have you seen https://wokwi.com? If not, go take a look!
+
+You may use the online simulator here or any other board that uses a Cortex M series processor.
+
+Problem:
+
+a) Write a program to toggle Two LEDS or GPIOs namely, LED1 and LED2. at 1 sec and 2 sec interval respectively
+(if you are using the simulator online, then send a link to your project. Take a bare-metal approach! Does this approach scale,
+if there is a need to toggle many LEDs with different intervals?
+
+Code: 
+
+#include "pico/stdlib.h"      // include the Pico standard library
+#include "hardware/gpio.h"    // include the hardware GPIO library
+
+#define LED1_PIN 2             // define the pin number for the first LED as 2
+#define LED2_PIN 3             // define the pin number for the second LED as 3
+
+int main() {
+    gpio_init(LED1_PIN);      // initialize the first LED pin
+    gpio_set_dir(LED1_PIN, GPIO_OUT);   // set the first LED pin as an output
+    gpio_init(LED2_PIN);      // initialize the second LED pin
+    gpio_set_dir(LED2_PIN, GPIO_OUT);   // set the second LED pin as an output
+
+    const unsigned int led1_interval_ms = 1000;  // set the interval for the first LED to 1 second
+    const unsigned int led2_interval_ms = 2000;  // set the interval for the second LED to 2 seconds
+
+    while (true) {            // loop indefinitely
+        gpio_put(LED1_PIN, true);  // turn on the first LED
+        sleep_ms(led1_interval_ms);  // wait for the specified interval
+        gpio_put(LED1_PIN, false);  // turn off the first LED
+        gpio_put(LED2_PIN, true);  // turn on the second LED
+        sleep_ms(led2_interval_ms);  // wait for the specified interval
+        gpio_put(LED2_PIN, false);  // turn off the second LED
+    }
+    return 0;                 // end the program
+}
+
+
+Simulation Link:
+https://wokwi.com/projects/364533280702171137
