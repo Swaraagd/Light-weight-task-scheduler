@@ -4,7 +4,7 @@ Have you seen https://wokwi.com? If not, go take a look!
 
 You may use the online simulator here or any other board that uses a Cortex M series processor.
 
-Problem:
+Problem: 
 
 a) Write a program to toggle Two LEDS or GPIOs namely, LED1 and LED2. at 1 sec and 2 sec interval respectively
 (if you are using the simulator online, then send a link to your project. Take a bare-metal approach! Does this approach scale,
