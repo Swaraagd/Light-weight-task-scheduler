@@ -13,6 +13,8 @@ Take a bare-metal approach! Does this approach scale, if there is a need to togg
 b) Now, write a simple scheduler and create two tasks one for each LED to achieve the same functionality as above and
 share the code/link to the project. The idea here is to develop a pre- emptive scheduler of your own and not use any standard kernels or RTOS.Code:
 
+Code:
+
 #include "pico/stdlib.h" // include the Pico standard library
 #include "hardware/gpio.h" // include the hardware GPIO library
 
