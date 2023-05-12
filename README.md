@@ -1,3 +1,5 @@
+/*
+
 # Light-weight-task-scheduler
 
 SIMULATOR PLATFORM used:https://wokwi.com/
@@ -22,6 +24,8 @@ Answer for 1a
 Simulator platform used: https://wokwi.com/
 Simulation link for 1a:  https://wokwi.com/projects/364533280702171137
 Simulation recording shared in a seperate file.
+
+*/
 
 CODE USED:
 
@@ -54,12 +58,13 @@ int main() {
 ....................................................................................................................................................................................................................................................................................................................................
 
 
+/*
 Answer for 1b
 
 Simulator platform used: https://wokwi.com/
 Simulation link for 1a:  https://wokwi.com/projects/364531593912370177
 Simulation recording shared in a seperate file.
-
+*/
 CODE USED:
 
 #include "pico/stdlib.h"      // include the Pico standard library
