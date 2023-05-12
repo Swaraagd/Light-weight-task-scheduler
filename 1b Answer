@@ -1,0 +1,59 @@
+Light weight task scheduler
+
+Have you seen https://wokwi.com? If not, go take a look!
+
+You may use the online simulator here or any other board that uses a Cortex M series processor.
+
+Problem:
+
+a) Write a program to toggle Two LEDS or GPIOs namely, LED1 and LED2. at 1 sec and 2 sec interval respectively 
+(if you are using the simulator online, then send a link to your project. 
+Take a bare-metal approach! Does this approach scale, if there is a need to toggle many LEDs with different intervals?
+
+b) Now, write a simple scheduler and create two tasks one for each LED to achieve the same functionality as above and
+share the code/link to the project. The idea here is to develop a pre- emptive scheduler of your own and not use any standard kernels or RTOS.Code:
+
+#include "pico/stdlib.h" // include the Pico standard library
+#include "hardware/gpio.h" // include the hardware GPIO library
+
+#define LED1_PIN 2 // define the pin number for the first LED as 2
+#define LED2_PIN 3 // define the pin number for the second LED as 3
+
+typedef struct { // define a struct type for a task
+    int pin; // the pin number of the LED
+    int interval; // the interval between toggling the LED (in milliseconds)
+    int last_toggle_time; // the time (in milliseconds) when the LED was last toggled
+} Task;
+
+void toggle_led(Task *task) { // define a function for toggling an LED based on a task
+    int current_time = to_ms_since_boot(get_absolute_time()); // get the current time in milliseconds
+    if (current_time - task->last_toggle_time >= task->interval) { // if enough time has passed since the last toggle
+        task->last_toggle_time = current_time; // update the last toggle time to the current time
+        gpio_xor_mask(1 << task->pin); // toggle the LED using XOR
+    }
+}
+
+int main() { // the main function
+    gpio_init(LED1_PIN); // initialize the first LED pin
+    gpio_set_dir(LED1_PIN, GPIO_OUT); // set the first LED pin as an output
+
+    gpio_init(LED2_PIN); // initialize the second LED pin
+    gpio_set_dir(LED2_PIN, GPIO_OUT); // set the second LED pin as an output
+
+    Task tasks[] = { // define an array of tasks
+        {LED1_PIN, 1000, 0}, // the first task is to toggle the first LED every 1000ms, starting at time 0
+        {LED2_PIN, 2000, 0}  // the second task is to toggle the second LED every 2000ms, starting at time 0
+    };
+
+    while (true) { // loop indefinitely
+        for (int i = 0; i < sizeof(tasks) / sizeof(Task); i++) { // for each task
+            toggle_led(&tasks[i]); // toggle the corresponding LED
+        }
+        sleep_us(1000); // yield to other tasks for 1ms
+    }
+
+    return 0; // end the program
+}
+
+Simulation Link:
+https://wokwi.com/projects/364531593912370177
