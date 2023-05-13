@@ -1,96 +1,19 @@
-/*
+README:
 
-# Light-weight-task-scheduler
+Light-weight-task-scheduler
 
-SIMULATOR PLATFORM used:https://wokwi.com/
-Question:
+This is a solution to a problem of toggling two LEDS or GPIOs namely, LED1 and LED2 at 1 sec and 2 sec interval respectively.
 
-Light weight task scheduler
-Have you seen https://wokwi.com? If not, go take a look!
+This project provides two solutions:
 
-You may use the online simulator here or any other board that uses a Cortex M series processor.
+A bare-metal approach, where the LED toggling is done using a simple while loop.
+A scheduler approach, where the LED toggling is done using a simple scheduler.
+The solutions were implemented and tested using a Cortex M series processor on the Wokwi Simulator platform. The simulation links for both the solutions are provided in the respective code sections.
 
-Problem:
+The bare-metal approach is simple and straightforward, but it is not scalable when there is a need to toggle many LEDs with different intervals. To overcome this problem, a simple scheduler was implemented. The scheduler is a preemptive scheduler that executes the tasks based on their priority.
 
-a) Write a program to toggle Two LEDS or GPIOs namely, LED1 and LED2. at 1 sec and 2 sec interval respectively 
-(if you are using the simulator online, then send a link to your project. 
-Take a bare-metal approach! Does this approach scale, if there is a need to toggle many LEDs with different intervals?
+The scheduler approach provides a scalable solution for toggling multiple LEDs with different intervals. To add new tasks, you can create a new task function and add it to the task list in the scheduler. The scheduler will automatically execute the tasks in the order of their priority.
 
-b) Now, write a simple scheduler and create two tasks one for each LED to achieve the same functionality as above and
-share the code/link to the project. The idea here is to develop a pre- emptive scheduler of your own and not use any standard kernels or RTOS.Code:
+The code for both the solutions is provided in the respective code sections. The code is written in C and uses the Pico standard library and the hardware GPIO library.
 
-Answer for 1a
-
-Simulator platform used: https://wokwi.com/
-Simulation link for 1a:  https://wokwi.com/projects/364533280702171137
-Simulation recording shared in a seperate file.
-
-*/
-
-// CODE USED:
-
-#include "pico/stdlib.h"      // include the Pico standard library
-#include "hardware/gpio.h"    // include the hardware GPIO library
-
-#define LED1_PIN 2             // define the pin number for the first LED as 2
-#define LED2_PIN 3             // define the pin number for the second LED as 3
-
-int main() {
-    gpio_init(LED1_PIN);      // initialize the first LED pin
-    gpio_set_dir(LED1_PIN, GPIO_OUT);   // set the first LED pin as an output
-    gpio_init(LED2_PIN);      // initialize the second LED pin
-    gpio_set_dir(LED2_PIN, GPIO_OUT);   // set the second LED pin as an output
-
-    const unsigned int led1_interval_ms = 1000;  // set the interval for the first LED to 1 second
-    const unsigned int led2_interval_ms = 2000;  // set the interval for the second LED to 2 seconds
-
-    while (true) {            // loop indefinitely
-        gpio_put(LED1_PIN, true);  // turn on the first LED
-        sleep_ms(led1_interval_ms);  // wait for the specified interval
-        gpio_put(LED1_PIN, false);  // turn off the first LED
-        gpio_put(LED2_PIN, true);  // turn on the second LED
-        sleep_ms(led2_interval_ms);  // wait for the specified interval
-        gpio_put(LED2_PIN, false);  // turn off the second LED
-    }
-    return 0;                 // end the program
-}
-
-....................................................................................................................................................................................................................................................................................................................................
-
-
-/*
-Answer for 1b
-
-Simulator platform used: https://wokwi.com/
-Simulation link for 1a:  https://wokwi.com/projects/364531593912370177
-Simulation recording shared in a seperate file.
-*/
-// CODE USED:
-
-#include "pico/stdlib.h"      // include the Pico standard library
-#include "hardware/gpio.h"    // include the hardware GPIO library
-
-#define LED1_PIN 2             // define the pin number for the first LED as 2
-#define LED2_PIN 3             // define the pin number for the second LED as 3
-
-int main() {
-    gpio_init(LED1_PIN);      // initialize the first LED pin
-    gpio_set_dir(LED1_PIN, GPIO_OUT);   // set the first LED pin as an output
-    gpio_init(LED2_PIN);      // initialize the second LED pin
-    gpio_set_dir(LED2_PIN, GPIO_OUT);   // set the second LED pin as an output
-
-    const unsigned int led1_interval_ms = 1000;  // set the interval for the first LED to 1 second
-    const unsigned int led2_interval_ms = 2000;  // set the interval for the second LED to 2 seconds
-
-    while (true) {            // loop indefinitely
-        gpio_put(LED1_PIN, true);  // turn on the first LED
-        sleep_ms(led1_interval_ms);  // wait for the specified interval
-        gpio_put(LED1_PIN, false);  // turn off the first LED
-        gpio_put(LED2_PIN, true);  // turn on the second LED
-        sleep_ms(led2_interval_ms);  // wait for the specified interval
-        gpio_put(LED2_PIN, false);  // turn off the second LED
-    }
-    return 0;                 // end the program
-}
-
-
+To run the code on the Wokwi Simulator platform, create a new project and copy-paste the code. Run the simulation to see the LED toggling in action.
